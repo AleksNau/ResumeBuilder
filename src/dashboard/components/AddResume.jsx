@@ -1,4 +1,4 @@
-import { PlusSquare } from "lucide-react";
+import {Loader2, PlusSquare} from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -18,9 +18,11 @@ import {useUser} from '@clerk/clerk-react'
 const AddResume = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(false);
   const {user} = useUser()
 
-  const onCreate = () => {
+  const onCreate = async () => {
+    setLoading(true)
     console.log(user)
     let uuid = uuidv4();
     const data = {
@@ -32,7 +34,11 @@ const AddResume = () => {
       }
     }
 
-    GlobalApi.createNewResume(data).then(res => console.log(res))
+    GlobalApi.createNewResume(data).then(res => {
+      if (res) {
+        setLoading(false)
+      }
+    },(error) => setLoading(false))
   }
   return (
     <div>
@@ -55,7 +61,7 @@ const AddResume = () => {
             </DialogDescription>
             <div className="flex justify-end gap-5">
               <Button onClick={()=>setOpenDialog(false)} variant="ghost">Cancel</Button>
-              <Button disabled={title===""} onClick={()=>onCreate()} >Create</Button>
+              <Button disabled={title==="" || loading} onClick={()=>onCreate()} >{loading ? <Loader2 className={'animate-spin'}/> : "Create"}</Button>
             </div>
           </DialogHeader>
         </DialogContent>
