@@ -13,6 +13,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import GlobalApi from "../../../service/GlobalApi";
 import {useUser} from '@clerk/clerk-react'
+import { useNavigate } from "react-router-dom";
 
 
 const AddResume = () => {
@@ -20,6 +21,7 @@ const AddResume = () => {
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
   const {user} = useUser()
+  const navigate = useNavigate();
 
   const onCreate = async () => {
     setLoading(true)
@@ -36,7 +38,8 @@ const AddResume = () => {
 
     GlobalApi.createNewResume(data).then(res => {
       if (res) {
-        setLoading(false)
+        setLoading(false);
+        navigate('/dashboard/resume/'+res.data.data.documentId+"edit")
       }
     },(error) => setLoading(false))
   }
