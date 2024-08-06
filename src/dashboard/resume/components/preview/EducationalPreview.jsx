@@ -7,7 +7,7 @@ const EducationalPreview = ({resumeInfo}) => {
         <hr style={{borderColor:resumeInfo?.themeColor}}/>
         {resumeInfo&&resumeInfo.education.map((item,index)=> {
                return (<div className="my-5" key={index}>
-                    <h2 className="text-sm font-bold">{item?.universityName}</h2>
+                    <h2 className="text-sm font-bold" style={{color:resumeInfo.themeColor}}>{item?.universityName}</h2>
                     <h2 className="text-xs flex justify-between">{item?.degree} in {item?.major} <span>{item?.startDate} - {item?.endDate}</span></h2>
                     <p className="text-xs my-2">{item?.description}</p>
                 </div> )
