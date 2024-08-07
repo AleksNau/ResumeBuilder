@@ -4,6 +4,7 @@ import './App.css'
 import {Button} from "./components/ui/button";
 import {Navigate, Outlet} from "react-router-dom";
 import {useUser} from "@clerk/clerk-react";
+import { Toaster } from "@/components/ui/sonner"
 import Header from "./components/custom/Header.jsx";
 
 function App() {
@@ -16,6 +17,7 @@ if (isSignedIn && isLoaded) {
     <>
         <Header/>
         <Outlet/>
+        <Toaster />
     </>
   )
 }
