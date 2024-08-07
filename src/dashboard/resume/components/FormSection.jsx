@@ -2,19 +2,20 @@ import { ArrowLeft, ArrowRight, LayoutGrid } from "lucide-react";
 import PersonalDetailForm from "./forms/PersonalDetailForm";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import SummeryForm from "./forms/SummeryForm";
 const FormSection = () => {
-    const [activeFormIndex,setActiveFormIndex] = useState(1)
+    const [activeFormIndex,setActiveFormIndex] = useState(2)
     const [enableNext,setEnableNext] = useState(false)
     return ( 
     <div>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-5">
             <Button variant="outline" size="sm"><LayoutGrid/> Theme</Button>
             <div className="flex gap-2">
                 {activeFormIndex>1&&<Button size="sm" onClick={()=> setActiveFormIndex(activeFormIndex-1)}><ArrowLeft/></Button>}
                 <Button disabled={!enableNext} className="flex gap-2" size="sm" onClick={()=> setActiveFormIndex(activeFormIndex+1)}>Next <ArrowRight/></Button>
             </div>
         </div>
-        {activeFormIndex===1?<PersonalDetailForm enableNext={(v)=>setEnableNext(v)}/>:null}
+        {activeFormIndex===1?<PersonalDetailForm enableNext={(v)=>setEnableNext(v)}/>:activeFormIndex===2?<SummeryForm enableNext={(v)=>setEnableNext(v)}/>:null}
     </div> );
 }
  

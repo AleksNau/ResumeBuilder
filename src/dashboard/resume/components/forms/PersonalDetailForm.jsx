@@ -3,7 +3,7 @@ import ResumeInfoContext from "../../../../context/ResumeInfoContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useParams } from "react-router-dom";
-import {LoadinCircle} from "lucide-react";
+import {LoaderCircle} from "lucide-react";
 import { toast } from "sonner"
 import GlobalApi from "../../../../../service/GlobalApi";
 const PersonalDetailForm = ({enableNext}) => {
@@ -66,9 +66,10 @@ const PersonalDetailForm = ({enableNext}) => {
                 </div>
             </div>
             <div className="mt-3 flex justify-end">
-                <Button type='submit' disabled={loading}>{loading?<LoadinCircle className="animate-spin"/>:"Save"}</Button>
+                <Button type='submit' disabled={loading}>{loading?<LoaderCircle className="animate-spin"/>:"Save"}</Button>
             </div>
         </form>
+        
     </div> );
 }
  
