@@ -12,7 +12,9 @@ const Header = () => {
 
             {isSignedIn ? (
                 <div className='flex gap-2 items-center'>
-                    <Button onClick={() => {navigate('/dashboard')}}>Dashboard</Button>
+                    <Button onClick={() => {
+                        navigate('/dashboard')
+                    }}>Dashboard</Button>
                     <UserButton variant="outline"/>
                 </div>
             ) : (<Link to={'/auth/sign-in'}>

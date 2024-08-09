@@ -7,17 +7,17 @@ import dummy from '../../../../data/dummy';
 
 const EditResume = () => {
     const params = useParams()
-    const [resumeInfo,setResumeInfo] = useState();
-    useEffect(()=> {
+    const [resumeInfo, setResumeInfo] = useState();
+    useEffect(() => {
         console.log(params.resumeId)
         setResumeInfo(dummy)
-    },[dummy])
+    }, [dummy])
     return (
-        <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}}>
-        <div className='grid grid-cols-1 md:grid-cols-2 p-10 gap-10 '>
-            <FormSection/>
-            <ResumePreview/>
-        </div>
+        <ResumeInfoContext.Provider value={{resumeInfo, setResumeInfo}}>
+            <div className='grid grid-cols-1 md:grid-cols-2 p-10 gap-10 '>
+                <FormSection/>
+                <ResumePreview/>
+            </div>
         </ResumeInfoContext.Provider>
     );
 };
