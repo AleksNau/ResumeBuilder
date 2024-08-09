@@ -1,7 +1,7 @@
 import { Button } from "../../../../components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useContext, useEffect, useState } from "react";
-import {LoaderCircle} from "lucide-react";
+import {Brain, LoaderCircle} from "lucide-react";
 import { useParams } from "react-router-dom";
 import GlobalApi from "../../../../../service/GlobalApi";
 import GigaAuth from "../../../../../service/GigaAuth";
@@ -40,6 +40,8 @@ const SummeryForm = ({enableNext}) => {
     
     const handleAi = (e) => {
         e.preventDefault();
+
+        console.log("Вызвать AI!")
         /*let data = qs.stringify({
             'scope': 'GIGACHAT_API_PERS' 
           });
@@ -60,7 +62,7 @@ const SummeryForm = ({enableNext}) => {
             "stream": false,
             "repetition_penalty": 1
           }
-        GigaApi.sendNewMessage(data)
+        /*GigaApi.sendNewMessage(data)*/
     }
     return ( 
         <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4">
@@ -69,7 +71,7 @@ const SummeryForm = ({enableNext}) => {
         <form className="mt-7">
             <div className="flex justify-between items-end">
                 <label>Add summery</label>
-                <Button onClick={handleAi} type="button" className="border-primary text-primary" size="sm" variant="outline">Generate from Ai</Button>
+                <Button onClick={handleAi} type="button" className="border-primary text-primary flex gap-2" size="sm" variant="outline"><Brain className="h-4 w-4"/> Generate from Ai</Button>
             </div>
             <Textarea requared onChange={(e) => setSummery(e.target.value)} className="mt-5"/>
             <div className="mt-2 flex justify-end">

@@ -3,8 +3,9 @@ import PersonalDetailForm from "./forms/PersonalDetailForm";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import SummeryForm from "./forms/SummeryForm";
+import ExpForm from "./forms/ExpForm";
 const FormSection = () => {
-    const [activeFormIndex,setActiveFormIndex] = useState(2)
+    const [activeFormIndex,setActiveFormIndex] = useState(3)
     const [enableNext,setEnableNext] = useState(false)
     return ( 
     <div>
@@ -15,7 +16,7 @@ const FormSection = () => {
                 <Button disabled={!enableNext} className="flex gap-2" size="sm" onClick={()=> setActiveFormIndex(activeFormIndex+1)}>Next <ArrowRight/></Button>
             </div>
         </div>
-        {activeFormIndex===1?<PersonalDetailForm enableNext={(v)=>setEnableNext(v)}/>:activeFormIndex===2?<SummeryForm enableNext={(v)=>setEnableNext(v)}/>:null}
+        {activeFormIndex===1?<PersonalDetailForm enableNext={(v)=>setEnableNext(v)}/>:activeFormIndex===2?<SummeryForm enableNext={(v)=>setEnableNext(v)}/>:activeFormIndex===3?<ExpForm enableNext={(v)=>setEnableNext(v)}/>:null}
     </div> );
 }
  
