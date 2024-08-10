@@ -7,7 +7,7 @@ import Header from "./components/custom/Header.jsx";
 function App() {
     const {user, isLoaded, isSignedIn} = useUser()
 //поправить на !isSignedIn
-    if (isSignedIn && isLoaded) {
+    if (!isSignedIn && isLoaded) {
         return <Navigate to={'/auth/sign-in'}/>
     }
     return (

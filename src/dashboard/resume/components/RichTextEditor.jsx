@@ -1,7 +1,6 @@
-import {useState} from 'react';
+import {useState,useContext} from 'react';
 import {BtnBold, BtnItalic, Editor, EditorProvider, Toolbar} from 'react-simple-wysiwyg';
 import {Button} from "../../../components/ui/button.jsx";
-import {useContext} from "@types/react";
 import ResumeInfoContext from "../../../context/ResumeInfoContext.jsx";
 import {toast} from "sonner";
 import {LoaderCircle} from "lucide-react";

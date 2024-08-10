@@ -5,6 +5,7 @@ import {Brain, LoaderCircle} from "lucide-react";
 import {useParams} from "react-router-dom";
 import GlobalApi from "../../../../../service/GlobalApi";
 import ResumeInfoContext from "../../../../context/ResumeInfoContext";
+import {toast} from "sonner";
 
 const SummeryForm = ({enableNext}) => {
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext);
@@ -21,7 +22,7 @@ const SummeryForm = ({enableNext}) => {
             enableNext(true);
             setLoading(false);
             toast("Resume has been updated.")
-        }, (error => setLoading(false)))
+        }, ((error) => setLoading(false)))
 
     }
     useEffect(() => {
@@ -29,7 +30,7 @@ const SummeryForm = ({enableNext}) => {
             ...resumeInfo,
             summery: summery
         })
-    })
+    },[summery])
 
 
     const handleAi = (e) => {
@@ -62,13 +63,13 @@ const SummeryForm = ({enableNext}) => {
         <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4">
             <h2 className="font-bold text-lg">Summery</h2>
             <p>Add summery for your job title</p>
-            <form className="mt-7">
+            <form className="mt-7" onSubmit={onSave}>
                 <div className="flex justify-between items-end">
                     <label>Add summery</label>
                     <Button onClick={handleAi} type="button" className="border-primary text-primary flex gap-2"
                             size="sm" variant="outline"><Brain className="h-4 w-4"/> Generate from Ai</Button>
                 </div>
-                <Textarea requared onChange={(e) => setSummery(e.target.value)} className="mt-5"/>
+                <Textarea required onChange={(e) => setSummery(e.target.value)} className="mt-5"/>
                 <div className="mt-2 flex justify-end">
                     <Button type='submit' disabled={loading}>{loading ?
                         <LoaderCircle className="animate-spin"/> : "Save"}</Button>

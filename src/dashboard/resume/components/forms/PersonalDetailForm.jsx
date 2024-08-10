@@ -17,9 +17,10 @@ const PersonalDetailForm = ({enableNext}) => {
         console.log(params)
     })
     const handleInputChange = (e) => {
+        const {name, value} = e.target;
         setFormData({...formData, [name]: value})
         enableNext(false);
-        const {name, value} = e.target;
+
 
         setResumeInfo({...resumeInfo, [name]: value})
     }
@@ -32,7 +33,7 @@ const PersonalDetailForm = ({enableNext}) => {
             enableNext(true);
             setLoading(false);
             toast("Resume has been updated.")
-        }, (error => setLoading(false)))
+        }, ((error) => setLoading(false)))
 
     }
     return (

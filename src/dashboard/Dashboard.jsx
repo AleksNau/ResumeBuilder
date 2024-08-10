@@ -8,11 +8,9 @@ const Dashboard = () => {
     const {user} = useUser()
     const [resumeList, setResumeList] = useState([])
     const getResumeList = () => {
-        GlobalApi.getUserResumes(user?.primaryEmailAddress?.emailAddress.then(res => {
-            console.log(res.data)
-            console.log(res.data.data)
+        GlobalApi.getUserResumes(user?.primaryEmailAddress?.emailAddress).then(res => {
             setResumeList(res.data.data)
-        }))
+        })
     }
 
     useEffect(() => {
@@ -25,7 +23,7 @@ const Dashboard = () => {
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10 gap-5'>
                 <AddResume/>
                 {resumeList.length > 0 && resumeList.map((resume, index) => {
-                    <ResumeCardItem resume={resume} key={index}/>
+                    return (<ResumeCardItem resume={resume} key={index}/>)
                 })}
             </div>
 

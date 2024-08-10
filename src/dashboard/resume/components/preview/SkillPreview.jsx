@@ -2,7 +2,7 @@ const SkillPreview = ({resumeInfo}) => {
     return (
         <div className="my-6">
             <h2 className="text-center font-bold test-sm mb-2"
-                style={{color: resumeInfo?.themeColor}}>Education</h2>
+                style={{color: resumeInfo?.themeColor}}>Skills</h2>
             <hr style={{borderColor: resumeInfo?.themeColor}}/>
             <div className="grid grid-cols-2 gap-3 my-4">
                 {resumeInfo && resumeInfo.skills.map((item, index) => {

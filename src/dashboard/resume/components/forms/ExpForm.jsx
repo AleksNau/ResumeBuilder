@@ -3,6 +3,10 @@ import ResumeInfoContext from "../../../../context/ResumeInfoContext";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import RichTextEditor from "../RichTextEditor";
+import {LoaderCircle} from "lucide-react";
+import GlobalApi from "../../../../../service/GlobalApi.js";
+import {toast} from "sonner";
+import {useParams} from "react-router-dom";
 
 const formField = {
     title: '',
@@ -17,8 +21,10 @@ const formField = {
 
 const ExpForm = ({enableNext}) => {
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext);
-
+    const [loading, setLoading] = useState(false);
     const [expList, setExpList] = useState([formField]);
+    const params = useParams();
+
     const handleChange = (index, event) => {
         const newEntries = expList.slice();
         const {name, value} = event.target
@@ -39,7 +45,19 @@ const ExpForm = ({enableNext}) => {
         newEntries[index][name] = event.target.value;
         setExpList(newEntries);
     }
-
+    const onSave = () => {
+        setLoading(true)
+        const data = {
+            data:{
+                experience: expList
+            }}
+        GlobalApi.updateResumeDetail(params?.resumeId, data).then(res => {
+            console.log(res);
+            enableNext(true);
+            setLoading(false);
+            toast("Resume has been updated.")
+        }, ((error) => setLoading(false)))
+    }
     useEffect(() => {
         setResumeInfo({
             ...resumeInfo,
@@ -93,9 +111,10 @@ const ExpForm = ({enableNext}) => {
             <div className="flex justify-between">
                 <div className="flex gap-2">
                     <Button onClick={addNewExp} variant='outline' className='text-primary'> + Add More Exp</Button>
-                    <Button onClick={removeNewExp} variant='outline' className='text-primary'> Remove</Button>
+                    <Button disabled={expList.length<2} onClick={removeNewExp} variant='outline' className='text-primary'> Remove</Button>
                 </div>
-                <Button>Save</Button>
+                <Button onClick={()=>onSave()}>{loading ?
+                    <LoaderCircle className="animate-spin"/> : "Save"}</Button>
             </div>
         </div>);
 }
