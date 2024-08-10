@@ -5,9 +5,10 @@ import {useState} from "react";
 import SummeryForm from "./forms/SummeryForm";
 import ExpForm from "./forms/ExpForm";
 import EducationForm from "./forms/EducationForm.jsx";
+import SkillsForm from "./forms/SkillsForm.jsx";
 
 const FormSection = () => {
-    const [activeFormIndex, setActiveFormIndex] = useState(4)
+    const [activeFormIndex, setActiveFormIndex] = useState(5)
     const [enableNext, setEnableNext] = useState(false)
     return (
         <div>
@@ -30,7 +31,8 @@ const FormSection = () => {
                 <PersonalDetailForm enableNext={(v) => setEnableNext(v)}/> : activeFormIndex === 2 ?
                     <SummeryForm enableNext={(v) => setEnableNext(v)}/> : activeFormIndex === 3 ?
                         <ExpForm enableNext={(v) => setEnableNext(v)}/>: activeFormIndex === 4 ?
-                            <EducationForm enableNext={(v) => setEnableNext(v)}/> : null}
+                            <EducationForm enableNext={(v) => setEnableNext(v)}/> : activeFormIndex === 5 ?
+                                <SkillsForm enableNext={(v) => setEnableNext(v)}/> : null}
         </div>);
 }
 
